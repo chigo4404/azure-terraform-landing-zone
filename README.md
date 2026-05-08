@@ -273,7 +273,7 @@ azure-enterprise-landing-zone/
 ├── LICENSE
 └── .gitignore
 ```
-Security Principles
+##Security Principles
 
 This project aligns with several core Zero Trust and cloud security principles:
 
@@ -284,7 +284,7 @@ Segmentation-first architecture
 Centralized visibility and monitoring
 Elimination of unnecessary public exposure
 
-Security controls include:
+##Security controls include:
 
 Azure Firewall
 Network Security Groups (NSGs)
@@ -294,7 +294,7 @@ Conditional access integration
 Azure Policy controls
 Terraform Module Design
 
-Infrastructure components are organized into domain-based reusable modules.
+##Infrastructure components are organized into domain-based reusable modules.
 
 Example domains include:
 
