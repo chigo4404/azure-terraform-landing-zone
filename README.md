@@ -385,24 +385,3 @@ Automated compliance validation
 Multi-region deployment patterns
 Advanced monitoring automation
 Security event orchestration workflows
-
-Author
-Chigozie Iluno
-
-Cloud & Security Architect
-
-Specializing in:
-
-Azure Architecture
-Cloud Security
-Terraform Automation
-Zero Trust Design
-Infrastructure Governance
-Portfolio
-
-https://chigoiluno.com
-
-LinkedIn
-
-https://linkedin.com/in/chigoi
-
