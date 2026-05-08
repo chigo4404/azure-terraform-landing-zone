@@ -273,7 +273,7 @@ azure-enterprise-landing-zone/
 ├── LICENSE
 └── .gitignore
 ```
-##Security Principles
+Security Principles
 
 This project aligns with several core Zero Trust and cloud security principles:
 
@@ -284,7 +284,7 @@ Segmentation-first architecture
 Centralized visibility and monitoring
 Elimination of unnecessary public exposure
 
-##Security controls include:
+Security controls include:
 
 Azure Firewall
 Network Security Groups (NSGs)
@@ -294,7 +294,7 @@ Conditional access integration
 Azure Policy controls
 Terraform Module Design
 
-##Infrastructure components are organized into domain-based reusable modules.
+Infrastructure components are organized into domain-based reusable modules.
 
 Example domains include:
 
@@ -306,7 +306,7 @@ Monitoring
 Identity
 Governance
 
-##This approach improves:
+This approach improves:
 
 Reusability
 Operational consistency
@@ -314,37 +314,37 @@ Scalability
 Environment standardization
 Environment Separation
 
-##Infrastructure deployments are isolated across:
+Infrastructure deployments are isolated across:
 
 Development
 Test
 Production
 
-##Each environment maintains:
+Each environment maintains:
 Independent state management
 Dedicated variables
 Environment-specific configurations
 Reduced deployment blast radius
 Policies & Governance
 
-##Azure Policies are organized separately from infrastructure modules to maintain clear separation between:
+Azure Policies are organized separately from infrastructure modules to maintain clear separation between:
 Infrastructure deployment
 Governance enforcement
 
-##Policy examples include: 
+Policy examples include: 
 Deny public IPs
 Require resource tagging
 Restrict allowed regions
 Enforce private endpoints
 
-#Deployment Workflow
+Deployment Workflow
 Typical deployment workflow:
 
 terraform init
 terraform plan
 terraform apply
 
-##Environment deployments are executed independently from their respective environment folders.
+Environment deployments are executed independently from their respective environment folders.
 Example:
 
 cd environments/dev
@@ -362,7 +362,7 @@ GitHub Actions
 Zero Trust Architecture Principles
 Future Improvements
 
-#Planned enhancements include:
+Planned enhancements include:
 CI/CD pipeline expansion
 Policy-as-Code integration
 Automated compliance validation
@@ -371,22 +371,22 @@ Advanced monitoring automation
 Security event orchestration
 Documentation
 
-##Additional architecture and design documentation can be found in:
+Additional architecture and design documentation can be found in:
 /docs
 
-##Author
+Author
 Chigozie Iluno
 Cloud & Security Architect
 
-##Specializing in:
+Specializing in:
 Azure Architecture
 Cloud Security
 Terraform Automation
 Zero Trust Design
 Infrastructure Governance
 
-##Portfolio:
+Portfolio:
 https://chigoiluno.com
 
-##LinkedIn:
+LinkedIn:
 https://linkedin.com/in/chigoi
