@@ -273,120 +273,136 @@ azure-enterprise-landing-zone/
 ├── LICENSE
 └── .gitignore
 ```
-Security Principles
+# Security Principles
 
-This project aligns with several core Zero Trust and cloud security principles:
+This project aligns with core Zero Trust and enterprise cloud security principles designed to improve visibility, reduce attack surface, and enforce secure-by-default infrastructure patterns.
 
-Never trust, always verify
-Least privilege access
-Assume breach
-Segmentation-first architecture
-Centralized visibility and monitoring
-Elimination of unnecessary public exposure
+## Core Principles
 
-Security controls include:
+- Never trust, always verify
+- Least privilege access
+- Assume breach
+- Segmentation-first architecture
+- Centralized visibility and monitoring
+- Elimination of unnecessary public exposure
 
-Azure Firewall
-Network Security Groups (NSGs)
-Private endpoints
-RBAC enforcement
-Conditional access integration
-Azure Policy controls
-Terraform Module Design
+## Security Controls
 
-Infrastructure components are organized into domain-based reusable modules.
+The landing zone incorporates multiple layered security controls including:
 
-Example domains include:
+- Azure Firewall
+- Network Security Groups (NSGs)
+- Private endpoints
+- RBAC enforcement
+- Conditional Access integration
+- Azure Policy controls
 
-Networking
-Security
-Compute
-Database
-Monitoring
-Identity
-Governance
+---
 
-This approach improves:
+# Terraform Module Design
 
-Reusability
-Operational consistency
-Scalability
-Environment standardization
-Environment Separation
+Infrastructure components are organized into domain-based reusable Terraform modules to improve scalability, operational consistency, and long-term maintainability.
 
-Infrastructure deployments are isolated across:
+## Example Module Domains
 
-Development
-Test
-Production
+- Networking
+- Security
+- Compute
+- Database
+- Monitoring
+- Identity
+- Governance
 
-Each environment maintains:
-Independent state management
-Dedicated variables
-Environment-specific configurations
-Reduced deployment blast radius
-Policies & Governance
+## Benefits of the Modular Design
 
-Azure Policies are organized separately from infrastructure modules to maintain clear separation between:
-Infrastructure deployment
-Governance enforcement
+- Improved reusability
+- Operational consistency
+- Scalable deployment patterns
+- Environment standardization
+- Simplified maintenance and governance
 
-Policy examples include: 
-Deny public IPs
-Require resource tagging
-Restrict allowed regions
-Enforce private endpoints
+---
 
-Deployment Workflow
-Typical deployment workflow:
+# Environment Separation
 
+Infrastructure deployments are isolated across dedicated environments to reduce operational risk and improve deployment governance.
+
+## Environments
+
+- Development
+- Test
+- Production
+
+## Each Environment Maintains
+
+- Independent state management
+- Dedicated variables
+- Environment-specific configurations
+- Reduced deployment blast radius
+
+---
+
+# Policies & Governance
+
+Azure Policies are organized separately from infrastructure modules to maintain clear separation between infrastructure deployment and governance enforcement.
+
+## Policy Examples
+
+- Deny public IPs
+- Require resource tagging
+- Restrict allowed regions
+- Enforce private endpoints
+
+This approach improves governance visibility, compliance enforcement, and security consistency across environments.
+
+---
+
+# Deployment Workflow
+
+Typical Terraform deployment workflow:
+
+```bash
 terraform init
 terraform plan
 terraform apply
 
-Environment deployments are executed independently from their respective environment folders.
-Example:
-
-cd environments/dev
-terraform init
-terraform plan
-terraform apply
 Technologies Used
 Microsoft Azure
 Terraform
 Azure Firewall
 Azure Policy
 Azure Monitor
-Azure Defender for Cloud
+Microsoft Defender for Cloud
 GitHub Actions
 Zero Trust Architecture Principles
 Future Improvements
 
-Planned enhancements include:
-CI/CD pipeline expansion
+Planned enhancements for the platform include:
+
+Expanded CI/CD automation
 Policy-as-Code integration
 Automated compliance validation
 Multi-region deployment patterns
 Advanced monitoring automation
-Security event orchestration
-Documentation
-
-Additional architecture and design documentation can be found in:
-/docs
+Security event orchestration workflows
 
 Author
 Chigozie Iluno
+
 Cloud & Security Architect
 
 Specializing in:
+
 Azure Architecture
 Cloud Security
 Terraform Automation
 Zero Trust Design
 Infrastructure Governance
+Portfolio
 
-Portfolio:
 https://chigoiluno.com
 
-LinkedIn:
+LinkedIn
+
 https://linkedin.com/in/chigoi
+
