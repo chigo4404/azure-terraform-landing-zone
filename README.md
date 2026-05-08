@@ -30,4 +30,4 @@ This project demonstrates a secure Azure Landing Zone built using Terraform, fol
 This project provides a scalable and secure foundation for deploying enterprise workloads in Azure.
 
 ## 🔗 Related Portfolio
-View full case study: [chigoiluno.com]
+View full case study: [www.chigoiluno.com]
