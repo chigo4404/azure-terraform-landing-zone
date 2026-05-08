@@ -1,5 +1,5 @@
-# azure-terraform-landing-zone
-azure-terraform-landing-zone
+# Azure-terraform-landing-zone
+Azure-terraform-landing-zone
 # Azure Landing Zone (Terraform)
 
 ## 📌 Overview
