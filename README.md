@@ -365,23 +365,75 @@ Typical Terraform deployment workflow:
 terraform init
 terraform plan
 terraform apply
+```
 
-Technologies Used
-Microsoft Azure
-Terraform
-Azure Firewall
-Azure Policy
-Azure Monitor
-Microsoft Defender for Cloud
-GitHub Actions
-Zero Trust Architecture Principles
-Future Improvements
+Environment deployments are executed independently from their respective environment folders.
+
+## Example
+
+```bash
+cd environments/dev
+
+terraform init
+terraform plan
+terraform apply
+```
+
+---
+
+# Technologies Used
+
+- Microsoft Azure
+- Terraform
+- Azure Firewall
+- Azure Policy
+- Azure Monitor
+- Microsoft Defender for Cloud
+- GitHub Actions
+- Zero Trust Architecture Principles
+
+---
+
+# Future Improvements
 
 Planned enhancements for the platform include:
 
-Expanded CI/CD automation
-Policy-as-Code integration
-Automated compliance validation
-Multi-region deployment patterns
-Advanced monitoring automation
-Security event orchestration workflows
+- Expanded CI/CD automation
+- Policy-as-Code integration
+- Automated compliance validation
+- Multi-region deployment patterns
+- Advanced monitoring automation
+- Security event orchestration workflows
+
+---
+
+# Documentation
+
+Additional architecture and design documentation can be found in:
+
+```plaintext
+/docs
+```
+
+---
+
+# Author
+
+## Chigozie Iluno
+Cloud & Security Architect
+
+Specializing in:
+
+- Azure Architecture
+- Cloud Security
+- Terraform Automation
+- Zero Trust Design
+- Infrastructure Governance
+
+## Portfolio
+
+https://chigoiluno.com
+
+## LinkedIn
+
+https://linkedin.com/in/chigoi
