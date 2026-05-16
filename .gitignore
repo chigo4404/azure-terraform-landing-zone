@@ -1,0 +1,15 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+id_rsa
+id_rsa.pub
+.vscode/
+
+# Sensitive
+*.tfvars
+*.pem
+*.key
+*.crt
+*.csr
+*.pfx
+*.p12
