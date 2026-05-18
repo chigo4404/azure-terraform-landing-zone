@@ -103,7 +103,7 @@ Validated infrastructure deployment using reusable Terraform modules and Infrast
 
 ## Monitoring Dashboard
 
-![Dashboard](images/dashboard-overview.png)
+![Dashboard](images/dashboard.jpg)
 
 Centralized operational dashboard integrating:
 
