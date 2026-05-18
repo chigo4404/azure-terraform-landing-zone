@@ -328,4 +328,4 @@ https://chigoiluno.com
 
 ## LinkedIn
 
-https://linkedin.com/in/chigozieiluno
+https://linkedin.com/in/chigozi
