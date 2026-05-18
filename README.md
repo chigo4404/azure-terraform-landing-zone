@@ -77,9 +77,9 @@ The primary objectives of this landing zone were:
 
 ---
 
-# Terraform Module Architecture
+# Landing Zone Terraform Module Architecture
 
-![Terraform Module Architecture](images/terraform-module-architecture.png)
+![Terraform Module Architecture](images/landing-zone-terraform-module-architecture.png)
 
 Infrastructure components are organized into reusable Terraform modules to improve scalability, operational consistency, and long-term maintainability.
 
