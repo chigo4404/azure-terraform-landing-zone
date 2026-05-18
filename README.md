@@ -101,6 +101,13 @@ The platform architecture integrates networking, security, monitoring, governanc
 
 Validated infrastructure deployment using reusable Terraform modules and Infrastructure-as-Code workflows.
 
+## Deployed Resource Viewer
+
+![Resource Viewer](images/resource-viewer.png)
+
+Deployed resource view in the portal resource viewer.
+
+
 ## Monitoring Dashboard
 
 ![Dashboard](images/dashboard.jpg)
