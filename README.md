@@ -105,12 +105,12 @@ Validated infrastructure deployment using reusable Terraform modules and Infrast
 
 ![Resource Viewer](images/resource-viewer.png)
 
-Deployed resource view in the portal resource viewer.
+Deployed resource view in Azure portal resource viewer.
 
 
 ## Monitoring Dashboard
 
-![Dashboard](images/dashboard.jpg)
+![Dashboard](images/dashboard.png)
 
 Centralized operational dashboard integrating:
 
