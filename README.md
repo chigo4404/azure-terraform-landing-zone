@@ -103,7 +103,7 @@ Validated infrastructure deployment using reusable Terraform modules and Infrast
 
 ## Deployed Resource Viewer
 
-![Resource Viewer](images/resource-viewer.png)
+![Resource Viewer](images/temp.png)
 
 Deployed resource view in Azure portal resource viewer.
 
