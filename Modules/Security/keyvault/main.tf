@@ -1,30 +1,51 @@
-# 1. Fetch current Azure Context
 data "azurerm_client_config" "current" {}
-
-#4. The Key Vault (Secrets Storage)
 resource "azurerm_key_vault" "kv" {
-  name                        = "kv-${var.client_name}-${var.environment}" # Must be unique
-  location                    = var.location
-  resource_group_name         = var.rg_name
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  sku_name                    = "standard"
-  purge_protection_enabled    = false
+
+  name                = "kv-${var.client_name}-${var.environment}"
+
+  location            = var.location
+
+  resource_group_name = var.rg_name
+
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+
+  sku_name            = "standard"
+
+  enable_rbac_authorization = true
 }
+resource "azurerm_role_assignment" "keyvault_admin" {
 
-# 5. Give the Architect/Admin access to the Vault
-resource "azurerm_key_vault_access_policy" "current_user" {
-  key_vault_id = azurerm_key_vault.kv.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_client_config.current.object_id # Auto-detects YOU
+  scope = azurerm_key_vault.kv.id
 
-  secret_permissions = ["Get", "List", "Set", "Delete", "Recover", "Purge"]
+  role_definition_name = "Key Vault Administrator"
+
+  principal_id = data.azurerm_client_config.current.object_id
+  #principal_id         = "55804bf6-9a09-44e4-acd0-d367e008e9b7"
 }
+resource "time_sleep" "wait_for_rbac" {
+    depends_on = [azurerm_role_assignment.keyvault_admin]
+    
+    create_duration = "180s"
+}
+resource "azurerm_key_vault_key" "backup_cmk" {
 
-# 6. Store a Secret (Example: VM Password)
-resource "azurerm_key_vault_secret" "vm_password" {
-  name         = "vm-initial-password"
-  value        = "ComplexPassword123!" 
+  name = "backup-cmk"
+
   key_vault_id = azurerm_key_vault.kv.id
 
-  depends_on = [azurerm_key_vault_access_policy.current_user]
+  key_type = "RSA"
+
+  key_size = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey"
+  ]
+  depends_on = [
+    time_sleep.wait_for_rbac
+  ]
 }

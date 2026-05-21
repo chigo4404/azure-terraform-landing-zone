@@ -16,14 +16,14 @@ resource "azurerm_virtual_network" "hub_vnet" {
 # =========================
 # MANAGEMENT SUBNET
 # =========================
-
+/*
 resource "azurerm_subnet" "management" {
   name                 = "snet-management"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
-
+*/
 # =========================
 # SHARED SERVICES SUBNET
 # =========================
@@ -67,4 +67,25 @@ resource "azurerm_subnet" "firewall_management" {
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
 
   address_prefixes = ["10.0.252.0/26"]
+}
+# =========================
+# HUB MANAGEMENT SUBNET
+# =========================
+
+
+resource "azurerm_subnet" "management" {
+
+  name = "ManagementSubnet"
+
+  resource_group_name = var.resource_group_name
+
+  virtual_network_name = azurerm_virtual_network.hub_vnet.name
+
+  address_prefixes = ["10.0.10.0/24"]
+
+}
+
+resource "azurerm_subnet_network_security_group_association" "data_assoc" {
+  subnet_id                 = azurerm_subnet.management.id
+  network_security_group_id = var.management_nsg_id
 }

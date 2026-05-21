@@ -13,3 +13,9 @@ output "vault_name" {
 output "backup_policy_name" {
   value = azurerm_backup_policy_vm.daily.name
 }
+
+/*
+output "key_vault_key_id" {
+  value = var.key_vault_key_id
+}
+*/

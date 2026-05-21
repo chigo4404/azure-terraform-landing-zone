@@ -13,3 +13,8 @@ variable "hub_vnet_name" {
 variable "tags" {
   type = map(string)
 }
+variable "environment" {
+
+  type = string
+
+}

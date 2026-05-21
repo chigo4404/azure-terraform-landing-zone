@@ -45,17 +45,6 @@ resource "azurerm_public_ip" "firewall_mgmt_pip" {
   tags = var.tags
 }
 
-# Azure Firewall Policy
-resource "azurerm_firewall_policy" "fw_policy" {
-  name                = "fw-policy"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-
-  sku = "Basic"
-
-  tags = var.tags
-}
-
 # Azure Firewall
 resource "azurerm_firewall" "firewall" {
   name                = "azfw-hub"
@@ -63,7 +52,8 @@ resource "azurerm_firewall" "firewall" {
   resource_group_name = var.resource_group_name
 
   sku_name = "AZFW_VNet"
-  sku_tier = "Basic"
+  sku_tier = "Premium" # or basic, depending on your needs
+  threat_intel_mode = "Alert" # Options: "Alert", "Deny", "Off"
 
   firewall_policy_id = azurerm_firewall_policy.fw_policy.id
 
@@ -81,7 +71,6 @@ management_ip_configuration {
   subnet_id            = data.azurerm_subnet.firewall_management.id
   public_ip_address_id = azurerm_public_ip.firewall_mgmt_pip.id
 }
-
 
 }
 

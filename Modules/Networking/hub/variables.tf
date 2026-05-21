@@ -15,3 +15,5 @@ variable "subnet_prefix" {
   type = string
 }
 */
+
+variable "management_nsg_id" {}

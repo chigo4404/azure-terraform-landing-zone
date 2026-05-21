@@ -47,3 +47,7 @@ output "private_endpoint_subnet_id" {
 output "policy_assignment_ids" {
   value = module.governance.policy_assignment_ids
 }
+
+output "hub_management_subnet_id" {
+  value = module.hub.management_subnet_id
+}

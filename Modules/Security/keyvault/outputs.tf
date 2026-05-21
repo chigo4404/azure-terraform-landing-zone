@@ -6,3 +6,7 @@ output "key_vault_id" {
 output "key_vault_uri" {
   value = azurerm_key_vault.kv.vault_uri
 }
+
+output "backup_key_id" {
+  value = azurerm_key_vault_key.backup_cmk.id
+}

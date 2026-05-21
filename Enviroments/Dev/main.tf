@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.100"
+      version = "~> 4.0"
     }
   }
 }
@@ -18,29 +18,6 @@ resource "azurerm_resource_group" "dev" {
   # CHANGE THIS: Use the variable from your .tfvars
   location = var.azure_region
 }
-
-/*
-module "networking" {
-  source   = "../../Modules/Networking"
-  rg_name  = azurerm_resource_group.dev.name
-  location = azurerm_resource_group.dev.location
-
-  # ... rest of your code
-
-  vnet_name      = "vnet-dev"
-  address_space  = "10.0.0.0/16"
-  subnet_names   = ["web", "db"]
-  subnet_prefixes = ["10.0.1.0/24", "10.0.2.0/24"]
-  tags           = var.resource_tags
-
-  # using variables
-  vnet_name      = "vnet-${var.client_name}"
-  address_space  = var.dev_vnet_address_space
-  subnet_names   = var.dev_subnet_names
-  subnet_prefixes = var.dev_subnet_prefixes
-}
-*/
-
 
 module "linux_vm" {
   #source    = "../../Modules/Compute"
@@ -94,6 +71,36 @@ module "windows_vm" {
 
   #log_analytics_id = azurerm_log_analytics_workspace.law.id
 }
+
+module "management_windows_vm" {
+
+  source = "../../Modules/Compute/windows-vm"
+
+  windowsvm_count = 1
+
+  vm_name = "mgmt-${var.client_name}-${var.environment}"
+
+  vm_size = var.vm_size
+
+  subnet_id = module.hub.management_subnet_id
+
+  resource_group_name = azurerm_resource_group.dev.name
+
+  location = azurerm_resource_group.dev.location
+
+  admin_username = var.admin_username
+
+  admin_password = var.admin_password
+
+  tags = merge(
+    var.resource_tags,
+    {
+      role = "management"
+    }
+  )
+}
+
+
 
 module "sql_db" {
   source   = "../../Modules/Database"
@@ -214,6 +221,35 @@ module "route_table" {
   route_table_name    = "rt-dev"
   location            = var.location
   resource_group_name = local.resource_group_name
+  #firewall_private_ip = module.azure_firewall[0].firewall_private_ip
+   # Safe conditional lookup: returns null if azure_firewall is not deployed
+  firewall_private_ip = length(module.azure_firewall) > 0 ? module.azure_firewall[0].firewall_private_ip : null
+  environment = var.environment
+  tags = local.common_tags
+  subnet_id = module.spoke.app_subnet_id
+  hub_management_subnet_id = module.hub.management_subnet_id
+  route_table_id = module.route_table.hub_route_table_id
+}
+
+
+module "hub_route_table" {
+
+  source = "../../Modules/Networking/route-table"
+
+  route_table_name = "rt-hub-${var.environment}"
+
+  location          = var.azure_region
+
+  resource_group_name = local.resource_group_name
+
+  #firewall_private_ip = module.azure_firewall[0].firewall_private_ip
+  # Safe conditional lookup: returns null if azure_firewall is not deployed
+  firewall_private_ip = length(module.azure_firewall) > 0 ? module.azure_firewall[0].firewall_private_ip : null
+
+  subnet_id = module.hub.management_subnet_id
+  environment = var.environment
+  hub_management_subnet_id = module.hub.management_subnet_id
+  route_table_id = module.route_table.hub_route_table_id
 
   tags = local.common_tags
 }
@@ -230,7 +266,7 @@ module "spoke" {
   app_nsg_id  = module.app_nsg.nsg_id
   data_nsg_id = module.data_nsg.nsg_id
 
-  route_table_id = module.route_table.route_table_id
+  route_table_id = module.route_table.spoke_route_table_id #uncomment also in spoke main and variables.tf to use route tables in the spoke. currently commented out as firewall is not yet deployed and route table is dependent on firewall private IP for routing rules. once firewall is deployed and we have the private IP, we can uncomment the route table module and related variables to enable routing through the firewall.
 
   tags = local.common_tags
 }
@@ -243,6 +279,7 @@ module "hub" {
   resource_group_name = local.resource_group_name
 
   address_space = ["10.0.0.0/16"]
+  management_nsg_id = module.app_nsg.nsg_id
 
   tags = local.common_tags
 
@@ -331,6 +368,7 @@ module "azure_firewall" {
   source = "../../Modules/Networking/azure-firewall"
 
   resource_group_name = local.resource_group_name
+  environment = var.environment
   location            = var.azure_region
   hub_vnet_name       = module.hub.vnet_name
 
@@ -341,10 +379,9 @@ module "azure_firewall" {
 # Backup Module - Linked to Compute and Database for data protection and recovery
 module "backup" {
   source = "../../Modules/Backup"
-
+key_vault_key_id = module.keyvault.backup_key_id
   client_name = var.client_name
   environment = var.environment
-
   location            = var.azure_region
   resource_group_name = local.resource_group_name
 

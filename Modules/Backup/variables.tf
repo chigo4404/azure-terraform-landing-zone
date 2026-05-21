@@ -17,3 +17,8 @@ variable "resource_group_name" {
 variable "tags" {
   type = map(string)
 }
+variable "key_vault_key_id" {
+  type        = string
+  description = "Customer Managed Key ID for Recovery Services Vault encryption"
+  default     = null
+}
