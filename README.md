@@ -79,7 +79,7 @@ The primary objectives of this landing zone were:
 
 # Landing Zone Terraform Module Architecture
 
-![Terraform Module Architecture](images/landing-zone-terraform-module-architecture.png)
+![Terraform Module Architecture](docs/deployment-evidence/landing-zone-terraform-module-architecture.png)
 
 Infrastructure components are organized into reusable Terraform modules to improve scalability, operational consistency, and long-term maintainability.
 
@@ -87,7 +87,7 @@ Infrastructure components are organized into reusable Terraform modules to impro
 
 # Azure Cloud Architecture
 
-![Azure Cloud Architecture](images/landing-zone-diagram.png)
+![Azure Cloud Architecture](docs/deployment-evidence/landing-zone-diagram.png)
 
 The platform architecture integrates networking, security, monitoring, governance, and operational services into a centralized Azure landing zone model.
 
@@ -97,20 +97,20 @@ The platform architecture integrates networking, security, monitoring, governanc
 
 ## Terraform Apply Execution
 
-![Terraform Apply](images/terraform-apply.png)
+![Terraform Apply](docs/deployment-evidence/terraform-apply.png)
 
 Validated infrastructure deployment using reusable Terraform modules and Infrastructure-as-Code workflows.
 
 ## Deployed Resource Viewer
 
-![Resource Viewer](images/resource-viewer.png)
+![Resource Viewer](docs/deployment-evidence/resource-viewer.png)
 
 Deployed resource view in Azure portal resource viewer.
 
 
 ## Monitoring Dashboard
 
-![Dashboard](images/dashboard.png)
+![Dashboard](/docs/deployment-evidence/dashboard.png)
 
 Centralized operational dashboard integrating:
 
